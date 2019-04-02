@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+
+<h1>Add task</h1>
+<form method="post" action="/addtask" th:object="${task}">
+    <input type="text" th:field="*{name}"/><br/>
+    <input type="date" th:field="*{dueDate}"/><br/>
+    <input type="text" th:field="*{description}"/><br/>
+    <select th:field="*{status}">
+        <option th:each="task: ${T(mj.pl.taskapp.Status).values()}"
+                th:value="${task.name()}"
+                th:text="${task.name()}"></option>
+    </select>
+    <input type="submit" value="Dodaj"/>
+</form>
+</body>
+</html>

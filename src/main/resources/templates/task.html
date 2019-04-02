@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Task Page</title>
+</head>
+<body>
+<h1>Tasks page:</h1>
+
+<a href="/">Powrót do listy filmów</a>
+
+<h1 th:text="${task.name}"></h1>
+<p th:text="|Description: ${task.description}|"></p>
+<p th:text="|Duedate: ${task.dueDate}|"></p>
+<p th:text="|Status: ${task.status}|"></p>
+
+</body>
+</html>
