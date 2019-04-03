@@ -7,12 +7,15 @@
 <body>
 <h1>Tasks page:</h1>
 
-<a href="/">Powrót do listy filmów</a>
+<a href="/">Back to the tasks list</a>
 
 <h1 th:text="${task.name}"></h1>
 <p th:text="|Description: ${task.description}|"></p>
 <p th:text="|Duedate: ${task.dueDate}|"></p>
 <p th:text="|Status: ${task.status}|"></p>
+
+<a th:href="'/deletetask/' + ${task.id}">Delete task</a>
+<a th:href="'/edittask/' + ${task.id}">Edit task</a>
 
 </body>
 </html>

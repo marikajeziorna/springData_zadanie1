@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,5 +50,27 @@ public class TaskController  {
         return "redirect:/";
     }
 
+    @GetMapping("/deletetask/{id}")
+    public String deleteTask(@PathVariable Long id){
+        taskRepository.deleteById(id);
+        return "redirect:/";
+    }
 
+    @GetMapping("/edittask/{id}")
+    public String edit(@PathVariable Long id, Model model){
+        Optional<Task> optionalTask = taskRepository.findById(id);
+        if(optionalTask.isPresent()){
+            Task task = optionalTask.get();
+            model.addAttribute("task", task);
+            return "edittask";
+        }else {
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/edittask")
+    public String editTask(Task task){
+        taskRepository.save(task);
+        return "redirect:/";
+    }
 }

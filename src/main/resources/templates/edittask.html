@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Task Page</title>
+</head>
+<body>
+<h1>Tasks page:</h1>
+
+<a href="/">Back to the tasks list</a>
+
+<form method="post" action="/edittask/" th:object="${task}">
+    <input type="hidden" th:field="*{id}"/><br/>
+    <input type="text" th:field="*{name}"/><br/>
+    <input type="date" th:field="*{dueDate}"/><br/>
+    <input type="text" th:field="*{description}"/><br/>
+    <select th:field="*{status}">
+        <option th:each="task: ${T(mj.pl.taskapp.Status).values()}"
+                th:value="${task.name()}"
+                th:text="${task.name()}"></option>
+    </select>
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>
